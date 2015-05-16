@@ -24,6 +24,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="@Url.Action("Create", "Products")">Create Product</a></li>
+                    <li><a href="@Url.Action("List", "Products")">List</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

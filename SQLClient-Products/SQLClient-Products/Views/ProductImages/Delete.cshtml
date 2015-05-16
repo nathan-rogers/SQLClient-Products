@@ -1,0 +1,19 @@
+﻿@model SQLClient_Products.Models.ProductImage
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <img src="~/Content/Uploads/@Model.ImageURL" class="img-rounded" alt="Cinque Terre" width="304" height="236" />
+</div>
+<p>Are you sure you want to Delete Image @Model.ImageID for Product number @Model.ProductID</p>
+<a href="@Url.Action("DeleteConfirmation", "ProductImages", new {imageID = Model.ImageID , id = Model.ProductID})" class="btn btn-danger btn-sm">
+    Yes
+
+</a>
+<a href="@Url.Action("List", "ProductImages", new {id = Model.ProductID})" class="btn btn-primary btn-sm">
+    No
+</a>
+
+

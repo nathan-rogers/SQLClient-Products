@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SQLClient_Products.Models.ProductImage>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Images For Product Number @ViewBag.ProductID</h2>
+
+@if (ViewBag.Reward != null)
+{
+    <div class="acknowledge">@ViewBag.Reward</div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="warning">@ViewBag.Error</div>
+}
+<a href="@Url.Action("List", "Products")" class="btn btn-danger btn-sm">
+    Back To Product List
+</a>
+
+<table class="table table-hover">
+    <tr>
+        <th>ImageID</th>
+        <th>Name</th>
+        <th>ProductID</th>
+        <th>Thumbnail</th>
+    </tr>
+    @foreach (var image in Model)
+    {
+        var imageURL = "/Content/Uploads/" + image.ImageURL;
+        <tr>
+            <td>@image.ImageID</td>
+            <td>@image.ImageURL</td>
+
+            <td>@image.ProductID</td>
+            <td><a href="@imageURL"><img src="@imageURL" class="img-rounded" alt="Cinque Terre" width="304" height="236"></a></td>
+
+            <td>
+
+                <form action="@Url.Action("UpdateImage", "ProductImages", new { imageID = image.ImageID, id = image.ProductID})" method="post" enctype="multipart/form-data">
+                    <div>
+                        <label for="file">Image File</label>
+                        <input type="file" id="fileUpload" name="file" required value="Change Image" />
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Save Changes</button>
+                </form>
+
+                <a href="@Url.Action("Delete", "ProductImages", new {imageID = image.ImageID})" class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="@Url.Action("Create", "ProductImages", new { id = ViewBag.ProductID})" class="btn btn-danger btn-sm">
+    Add Image
+</a>
+

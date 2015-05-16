@@ -7,9 +7,20 @@ namespace SQLClient_Products.Models
 {
     public class Product
     {
+        //product ID fields in database
+        public int ProductID { get; set; }
+        public string Name { get; set; }
+        public string ProductDescription { get; set; }
+        public decimal Price { get; set; }
 
-        //TODO: fill in the product class. 
-        // It should have at least the following properties:
-        //     Id, Name, Description, Price, ImageUrl
+        //not used
+        public Product() { }
+        public Product(int productID, string name, string description, decimal price)
+        {
+            this.ProductID = productID;
+            this.Name = name;
+            this.ProductDescription = description;
+            this.Price = price;
+        }
     }
 }

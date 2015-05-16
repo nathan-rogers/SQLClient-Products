@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SQLClient_Products.Models.Product>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Products List</h2>
+@if (ViewBag.Message != null)
+{
+    <div class="reward">@ViewBag.Message</div>
+}
+@if (ViewBag.Error != null)
+{
+    <div class="warning">@ViewBag.Error</div>
+}
+
+
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>ImageURL</th>
+        <th></th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.ProductID</td>
+            <td>@product.Name</td>
+            <td>@product.ProductDescription</td>
+            <td>@product.Price</td>
+            <td>
+                <a href="@Url.Action("List", "ProductImages", new {id = product.ProductID })" class="btn btn-primary btn-sm">
+                    Images
+                </a>
+                <a href="@Url.Action("Edit", "Products", new {id = product.ProductID })" class="btn btn-primary btn-sm">
+                    Edit
+                </a>
+                <a href="@Url.Action("Delete", "Products", new {id = product.ProductID })" class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>
